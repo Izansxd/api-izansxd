@@ -1376,7 +1376,7 @@ router.get('/download/tiktok3', async(req, res, next) => {
   if(!apikey) return res.json(loghandler.notparam)
   
   if(listkey.includes(apikey)){
-    fetch(encodeURI(`https://tiktokd.herokuapp.com/tiktok?url=${url}`))
+    fetch(encodeURI(`https://api.lolhuman.xyz/api/tiktok?apikey=GataDios&url=${url}`))
     .then(response => response.json())
         .then(hasil => {
 
@@ -1403,7 +1403,7 @@ router.get('/download/tiktok2', async(req, res, next) => {
   if(!apikey) return res.json(loghandler.notparam)
   
   if(listkey.includes(apikey)){
-    fetch(encodeURI(`https://aqulzz.herokuapp.com/tiktok?url=${url}`))
+    fetch(encodeURI(`https://api.lolhuman.xyz/api/tiktok?apikey=GataDios&url=${url}`))
     .then(response => response.json())
         .then(hasil => {
 
