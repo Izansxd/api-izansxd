@@ -227,7 +227,7 @@ Akhir Pesan Error
 
 //router.use(favicon(__path + "/views/favicon.ico"));
 
-const listkey = ["bgsbot", "APIKEY", "bgs"];
+const listkey = ["apirey", "APIKEY", "ditofficial"];
 
 router.post("/apikey", async (req, res, next) => {
   const key = req.query.key;
@@ -998,11 +998,11 @@ router.get('/download/ytmp42', async(req, res, next) => {
   if(!apikey) return res.json(loghandler.notparam)
   
   if(listkey.includes(apikey)){
-    fetch(encodeURI(`https://api.lolhuman.xyz/api/ytvideo2?apikey=GataDios&url=${url}`))
+    fetch(encodeURI(`http://kocakz.herokuapp.com/api/media/ytvid?url=${url}`))
     .then(response => response.json())
         .then(hasil => {
 
-        var result = hasil.link;
+        var result = hasil.getVideo;
              res.json({
                  status : true,
                  creator : `${creator}`,
@@ -1052,7 +1052,7 @@ router.get('/primbon/zodiak', async(req, res, next) => {
   if(!apikey) return res.json(loghandler.notparam)
   
   if(listkey.includes(apikey)){
-    fetch(encodeURI(`https://api.lolhuman.xyz/api/zodiak/=${text}?apikey=GataDios`))
+    fetch(encodeURI(`http://revita.herokuapp.com/api/primbon/zodiaku?mimpi=${text}`))
     .then(response => response.json())
         .then(hasil => {
 
@@ -1079,7 +1079,7 @@ router.get('/primbon/artimimpi', async(req, res, next) => {
   if(!apikey) return res.json(loghandler.notparam)
   
   if(listkey.includes(apikey)){
-    fetch(encodeURI(`https://api.lolhuman.xyz/api/primbon/artimimpi?apikey=GataDios&query=${text}`))
+    fetch(encodeURI(`http://kocakz.herokuapp.com/api/primbon/tafsirmimpi?mimpi=${text}`))
     .then(response => response.json())
         .then(hasil => {
 
@@ -1106,7 +1106,7 @@ router.get('/primbon/artinama', async(req, res, next) => {
   if(!apikey) return res.json(loghandler.notparam)
   
   if(listkey.includes(apikey)){
-    fetch(encodeURI(`https://api.lolhuman.xyz/api/artinama?apikey=GataDios&nama=${text}`))
+    fetch(encodeURI(`http://kocakz.herokuapp.com/api/primbon/artinama?name=${text}`))
     .then(response => response.json())
         .then(hasil => {
 
@@ -1187,7 +1187,7 @@ router.get('/downloader/xnxx', async(req, res, next) => {
   if(!apikey) return res.json(loghandler.notparam)
   
   if(listkey.includes(apikey)){
-    fetch(encodeURI(`https://api.lolhuman.xyz/api/xnxxsearch?apikey=GataDios&query=${query}`))
+    fetch(encodeURI(`http://kocakz.herokuapp.com/api/media/xnxx/search?query=${query}`))
     .then(response => response.json())
         .then(hasil => {
 
@@ -1376,7 +1376,7 @@ router.get('/download/tiktok3', async(req, res, next) => {
   if(!apikey) return res.json(loghandler.notparam)
   
   if(listkey.includes(apikey)){
-    fetch(encodeURI(`https://api.lolhuman.xyz/api/tiktok?apikey=GataDios&url=${url}`))
+    fetch(encodeURI(`https://tiktokd.herokuapp.com/tiktok?url=${url}`))
     .then(response => response.json())
         .then(hasil => {
 
@@ -1403,7 +1403,7 @@ router.get('/download/tiktok2', async(req, res, next) => {
   if(!apikey) return res.json(loghandler.notparam)
   
   if(listkey.includes(apikey)){
-    fetch(encodeURI(`https://api.lolhuman.xyz/api/tiktok?apikey=GataDios&url=${url}`))
+    fetch(encodeURI(`https://aqulzz.herokuapp.com/tiktok?url=${url}`))
     .then(response => response.json())
         .then(hasil => {
 
@@ -1430,7 +1430,7 @@ router.get('/downloader/facebook2', async(req, res, next) => {
   if(!apikey) return res.json(loghandler.notparam)
   
   if(listkey.includes(apikey)){
-    fetch(encodeURI(`https://api.lolhuman.xyz/api/facebook?apikey=GataDios&url=${url}`))
+    fetch(encodeURI(`https://api-xcoders.xyz/api/download/fb?url=${url}&apikey=UW8wc3KPy0`))
     .then(response => response.json())
         .then(hasil => {
 
@@ -1457,7 +1457,7 @@ router.get('/downloader/facebook', async(req, res, next) => {
   if(!apikey) return res.json(loghandler.notparam)
   
   if(listkey.includes(apikey)){
-    fetch(encodeURI(`https://api.lolhuman.xyz/api/facebook?apikey=GataDios&url=${url}`))
+    fetch(encodeURI(`https://api-xcoders.xyz/api/download/fb?url=${url}&apikey=UW8wc3KPy0`))
     .then(response => response.json())
         .then(hasil => {
 
@@ -7325,7 +7325,7 @@ router.get('/canvas/welcome', async(req, res, next) => {
   if(!gcicon) return res.json(loghandler.gcicon)
   if(!apikey) return res.json(loghandler.notparam)
   if(listkey.includes(apikey)){
-  let hasil = `https://rest-api.akuari.my.id/canvas/welcome?name=${username}&gcname=${gcname}&ppgc=${gcicon}&member=${memberCount}&pp=${pp}&bg=${bg}
+  let hasil = `https://hadi-api.herokuapp.com/api/card/welcome3?username=${username}&memberCount=${memberCount}&bg=${bg}&pp=${pp}&gcicon=${gcicon}`
   data = await fetch(hasil).then(v => v.buffer())
          await fs.writeFileSync(__path +'/tmp/welcome.png', data)
         res.sendFile(__path+'/tmp/welcome.png')
@@ -7333,7 +7333,20 @@ router.get('/canvas/welcome', async(req, res, next) => {
     res.json(loghandler.invalidKey)
   }
 });
-
+router.get('/maker/tololserti', async(req, res, next) => {
+  const apikey = req.query.apikey;
+  const url = req.query.url;
+  if(!text) return res.json(loghandler.noturl)
+  if(!apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(apikey)){
+  let hasil = `https://lolhuman.herokuapp.com/api/toloserti?apikey=muzharzain&name=${text}`
+  data = await fetch(hasil).then(v => v.buffer())
+         await fs.writeFileSync(__path +'/tmp/tololserti.jpeg', data)
+        res.sendFile(__path+'/tmp/tololserti.jpeg')
+  } else {
+    res.json(loghandler.invalidKey)
+  }
+});
 router.get('/maker/emoji2png', async(req, res, next) => {
   const apikey = req.query.apikey;
   const Emoji = req.query.text;
@@ -7370,7 +7383,7 @@ router.get('/downloader/facebook2', async(req, res, next) => {
   if(!apikey) return res.json(loghandler.notparam)
   
   if(listkey.includes(apikey)){
-    fetch(encodeURI(`https://api.lolhuman.xyz/api/facebook?apikey=GataDios&url=${url}`))
+    fetch(encodeURI(`https://fb-scrape.herokuapp.com/api/fb?url=${url}`))
     .then(response => response.json())
         .then(data => {
         var result = data;
