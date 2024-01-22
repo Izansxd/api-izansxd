@@ -7333,30 +7333,6 @@ router.get('/canvas/welcome', async(req, res, next) => {
     res.json(loghandler.invalidKey)
   }
 });
-router.get('/canvas/goodbye', async(req, res, next) => {
-  const apikey = req.query.apikey;
-  const username = req.query.username;
-  const memberCount = req.query.memberCount;
-  const gcname = req.query.gcname;
-  const bg = req.query.bg;
-  const pp = req.query.pp;
-  const gcicon = req.query.gcicon;
-  if(!username) return res.json(loghandler.notusername)
-  if(!memberCount) return res.json(loghandler.memberCount)
-  if(!gcname) return res.json(loghandler.gcname)
-  if(!bg) return res.json(loghandler.bg)
-  if(!pp) return res.json(loghandler.pp)
-  if(!gcicon) return res.json(loghandler.gcicon)
-  if(!apikey) return res.json(loghandler.notparam)
-  if(listkey.includes(apikey)){
-  let hasil = `https://rest-api.akuari.my.id/canvas/goodbye?name=${username}&gcname=${gcname}&ppgc=${gcicon}&member=${memberCount}&pp=${pp}&bg=${bg}
-  data = await fetch(hasil).then(v => v.buffer())
-         await fs.writeFileSync(__path +'/tmp/godbye.png', data)
-        res.sendFile(__path+'/tmp/godbye.png')
-  } else {
-    res.json(loghandler.invalidKey)
-  }
-});
 router.get('/maker/tololserti', async(req, res, next) => {
   const apikey = req.query.apikey;
   const url = req.query.url;
