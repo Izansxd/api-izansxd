@@ -998,11 +998,11 @@ router.get('/download/ytmp42', async(req, res, next) => {
   if(!apikey) return res.json(loghandler.notparam)
   
   if(listkey.includes(apikey)){
-    fetch(encodeURI(`http://kocakz.herokuapp.com/api/media/ytvid?url=${url}`))
+    fetch(encodeURI(`https://api.lolhuman.xyz/api/ytvideo2?apikey=GataDios&url=${url}`))
     .then(response => response.json())
         .then(hasil => {
 
-        var result = hasil.getVideo;
+        var result = hasil.link;
              res.json({
                  status : true,
                  creator : `${creator}`,
@@ -1052,7 +1052,7 @@ router.get('/primbon/zodiak', async(req, res, next) => {
   if(!apikey) return res.json(loghandler.notparam)
   
   if(listkey.includes(apikey)){
-    fetch(encodeURI(`http://revita.herokuapp.com/api/primbon/zodiaku?mimpi=${text}`))
+    fetch(encodeURI(`https://api.lolhuman.xyz/api/zodiak/=${text}?apikey=GataDios`))
     .then(response => response.json())
         .then(hasil => {
 
@@ -1079,7 +1079,7 @@ router.get('/primbon/artimimpi', async(req, res, next) => {
   if(!apikey) return res.json(loghandler.notparam)
   
   if(listkey.includes(apikey)){
-    fetch(encodeURI(`http://kocakz.herokuapp.com/api/primbon/tafsirmimpi?mimpi=${text}`))
+    fetch(encodeURI(`https://api.lolhuman.xyz/api/primbon/artimimpi?apikey=GataDios&query=${text}`))
     .then(response => response.json())
         .then(hasil => {
 
@@ -1106,7 +1106,7 @@ router.get('/primbon/artinama', async(req, res, next) => {
   if(!apikey) return res.json(loghandler.notparam)
   
   if(listkey.includes(apikey)){
-    fetch(encodeURI(`http://kocakz.herokuapp.com/api/primbon/artinama?name=${text}`))
+    fetch(encodeURI(`https://api.lolhuman.xyz/api/artinama?apikey=GataDios&nama=${text}`))
     .then(response => response.json())
         .then(hasil => {
 
@@ -1187,7 +1187,7 @@ router.get('/downloader/xnxx', async(req, res, next) => {
   if(!apikey) return res.json(loghandler.notparam)
   
   if(listkey.includes(apikey)){
-    fetch(encodeURI(`http://kocakz.herokuapp.com/api/media/xnxx/search?query=${query}`))
+    fetch(encodeURI(`https://api.lolhuman.xyz/api/xnxxsearch?apikey=GataDios&query=${query}`))
     .then(response => response.json())
         .then(hasil => {
 
@@ -1430,7 +1430,7 @@ router.get('/downloader/facebook2', async(req, res, next) => {
   if(!apikey) return res.json(loghandler.notparam)
   
   if(listkey.includes(apikey)){
-    fetch(encodeURI(`https://api-xcoders.xyz/api/download/fb?url=${url}&apikey=UW8wc3KPy0`))
+    fetch(encodeURI(`https://api.lolhuman.xyz/api/facebook?apikey=GataDios&url=${url}`))
     .then(response => response.json())
         .then(hasil => {
 
@@ -1457,7 +1457,7 @@ router.get('/downloader/facebook', async(req, res, next) => {
   if(!apikey) return res.json(loghandler.notparam)
   
   if(listkey.includes(apikey)){
-    fetch(encodeURI(`https://api-xcoders.xyz/api/download/fb?url=${url}&apikey=UW8wc3KPy0`))
+    fetch(encodeURI(`https://api.lolhuman.xyz/api/facebook?apikey=GataDios&url=${url}`))
     .then(response => response.json())
         .then(hasil => {
 
@@ -7325,10 +7325,34 @@ router.get('/canvas/welcome', async(req, res, next) => {
   if(!gcicon) return res.json(loghandler.gcicon)
   if(!apikey) return res.json(loghandler.notparam)
   if(listkey.includes(apikey)){
-  let hasil = `https://hadi-api.herokuapp.com/api/card/welcome3?username=${username}&memberCount=${memberCount}&bg=${bg}&pp=${pp}&gcicon=${gcicon}`
+  let hasil = `https://rest-api.akuari.my.id/canvas/welcome?name=${username}&gcname=${gcname}&ppgc=${gcicon}&member=${memberCount}&pp=${pp}&bg=${bg}
   data = await fetch(hasil).then(v => v.buffer())
          await fs.writeFileSync(__path +'/tmp/welcome.png', data)
         res.sendFile(__path+'/tmp/welcome.png')
+  } else {
+    res.json(loghandler.invalidKey)
+  }
+});
+router.get('/canvas/goodbye', async(req, res, next) => {
+  const apikey = req.query.apikey;
+  const username = req.query.username;
+  const memberCount = req.query.memberCount;
+  const gcname = req.query.gcname;
+  const bg = req.query.bg;
+  const pp = req.query.pp;
+  const gcicon = req.query.gcicon;
+  if(!username) return res.json(loghandler.notusername)
+  if(!memberCount) return res.json(loghandler.memberCount)
+  if(!gcname) return res.json(loghandler.gcname)
+  if(!bg) return res.json(loghandler.bg)
+  if(!pp) return res.json(loghandler.pp)
+  if(!gcicon) return res.json(loghandler.gcicon)
+  if(!apikey) return res.json(loghandler.notparam)
+  if(listkey.includes(apikey)){
+  let hasil = `https://rest-api.akuari.my.id/canvas/goodbye?name=${username}&gcname=${gcname}&ppgc=${gcicon}&member=${memberCount}&pp=${pp}&bg=${bg}
+  data = await fetch(hasil).then(v => v.buffer())
+         await fs.writeFileSync(__path +'/tmp/godbye.png', data)
+        res.sendFile(__path+'/tmp/godbye.png')
   } else {
     res.json(loghandler.invalidKey)
   }
@@ -7383,7 +7407,7 @@ router.get('/downloader/facebook2', async(req, res, next) => {
   if(!apikey) return res.json(loghandler.notparam)
   
   if(listkey.includes(apikey)){
-    fetch(encodeURI(`https://fb-scrape.herokuapp.com/api/fb?url=${url}`))
+    fetch(encodeURI(`https://api.lolhuman.xyz/api/facebook?apikey=GataDios&url=${url}`))
     .then(response => response.json())
         .then(data => {
         var result = data;
