@@ -67,8 +67,6 @@ var {
 var {
   ytDonlodMp3,
   ytDonlodMp4,
-  ytPlayMp3,
-  ytPlayMp4,
   ytSearch
 } = require("./../lib/utils/yt");
 
@@ -531,45 +529,53 @@ router.get('/download/ytmp4', async(req, res, next) => {
 });
 
 router.get("/yt/playmp3", async(req, res, next) => {
-    const query = req.query.query;
-    const apikey = req.query.apikey;
-    
-    if(!query) return res.json(loghandler.notquery)
-    if(!apikey) return res.json(loghandler.notparam)
-    if(listkey.includes(apikey)){
-    ytPlayMp3(query)
-        .then((result) => {
-            res.json(result);
-        })
-        .catch((error) => {
-            res.json(error);
-        });
-      } else {
-      res.json(loghandler.invalidKey)
-      }
-});
+    const apikey = req.query.apikey
+       	const q = req.query.query
+       	if(!apikey) return res.json(loghandler.apikey)
+       if (!q) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter query"})
+        if(listkey.includes(apikey)){
+       fetch(encodeURI(`https://rest-api.akuari.my.id/downloader/play2?query=${q}`))
+        .then(response => response.json())
+        .then(info => {
+        var result = info;
+             res.json({
+             	author: 'Bgsbot',
+                 result
+             })
+         })
+         .catch(e => {
+         	console.log(e);
+         	res.json(loghandler.error)
+})
+} else {
+  res.json(loghandler.apikey)
+}
+})
 
 router.get("/yt/playmp4", async(req, res, next) => {
 
-    const query = req.query.query;
-
-    const apikey = req.query.apikey;
-    
-    if(!query) return res.json(loghandler.notquery)
-    if(!apikey) return res.json(loghandler.notparam)
-    if(listkey.includes(apikey)){
-    ytPlayMp4(query)
-        .then((result) => {
-            res.json(result);
-        })
-        .catch((error) => {
-            res.json(error);
-        });
-      } else {
-      res.json(loghandler.invalidKey)
-      }
-});
-
+const apikey = req.query.apikey
+       	const url = req.query.query
+       	if(!apikey) return res.json(loghandler.apikey)
+       if (!url) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter query"})
+        if(listkey.includes(apikey)){
+       fetch(encodeURI(`https://rest-api.akuari.my.id/downloader/yt1?link=${url}`))
+        .then(response => response.json())
+        .then(info => {
+        var result = info;
+             res.json({
+             	author: 'Bgsbot',
+                 result
+             })
+         })
+         .catch(e => {
+         	console.log(e);
+         	res.json(loghandler.error)
+})
+} else {
+  res.json(loghandler.apikey)
+}
+})
 
 router.get('/yt/search', async(req, res, next) => {
     const query = req.query.query;
@@ -596,75 +602,76 @@ router.get('/yt/search', async(req, res, next) => {
 });
 
 router.get('/download/tiktok', async (req, res, next) => {
-    var Apikey = req.query.apikey,
-        url = req.query.url
-
-	if(!Apikey) return res.json(loghandler.notparam)
-	if(listkey.includes(Apikey)){
-     if (!url) return res.json(loghandler.noturl)
-     TiktokDownloader(`${url}`)
-        .then(data => {
-        var result = data.result;
+    const apikey = req.query.apikey
+       	const url = req.query.query
+       	if(!apikey) return res.json(loghandler.apikey)
+       if (!url) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter query"})
+        if(listkey.includes(apikey)){
+       fetch(encodeURI(`https://rest-api.akuari.my.id/downloader/tiktok4?link=${url}`))
+        .then(response => response.json())
+        .then(respon => {
+        var result = respon;
              res.json({
-               status: true,
-               code: 200,
-               creator: `${creator}`,
-               result
+             	author: 'Bgsbot',
+                 result
              })
          })
-         .catch((error) => {
-            res.json(error);
-        });
-      } else {
-     res.json(loghandler.invalidKey)
-     }
-});
+         .catch(e => {
+         	console.log(e);
+         	res.json(loghandler.error)
+})
+} else {
+  res.json(loghandler.apikey)
+}
+})
 
 router.get('/download/ig', async(req, res, next) => {
-  const url = req.query.url;
-  const apikey = req.query.apikey;
-  if(!url) return res.json(loghandler.noturl)
-  if(!apikey) return res.json(loghandler.notparam)
-  if(listkey.includes(apikey)){
-  igDownloader(url)
-    .then((result) => {
-      res.json({
-        status: true,
-        code: 200,
-        creator: `${creator}`,
-        result
-      })
-    })
-    .catch((error) => {
-      res.json(error)
-    });
-    } else {
-    	res.json(loghandler.invalidKey)
-    }
-});
+  const apikey = req.query.apikey
+       	const url = req.query.query
+       	if(!apikey) return res.json(loghandler.apikey)
+       if (!url) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter query"})
+        if(listkey.includes(apikey)){
+       fetch(encodeURI(`https://api.cafirexos.com/api/v1/igdl?url=${url}`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+             	author: 'Bgsbot',
+                 result
+             })
+         })
+         .catch(e => {
+         	console.log(e);
+         	res.json(loghandler.error)
+})
+} else {
+  res.json(loghandler.apikey)
+}
+})
 
 router.get('/download/ig2', async(req, res, next) => {
-  const url = req.query.url;
-  const apikey = req.query.apikey;
-  if(!url) return res.json(loghandler.noturl)
-  if(!apikey) return res.json(loghandler.notparam)
-  if(listkey.includes(apikey)){
-  igdl(url)
-    .then((result) => {
-      res.json({
-        status: true,
-        code: 200,
-        creator: `${creator}`,
-        result
-      })
-    })
-    .catch((error) => {
-      res.json(error)
-    });
-    } else {
-    	res.json(loghandler.invalidKey)
-    }
-});
+  const apikey = req.query.apikey
+       	const url = req.query.query
+       	if(!apikey) return res.json(loghandler.apikey)
+       if (!url) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter query"})
+        if(listkey.includes(apikey)){
+       fetch(encodeURI(`https://api.cafirexos.com/api/v1/igdl?url=${url}`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+             	author: 'Bgsbot',
+                 result
+             })
+         })
+         .catch(e => {
+         	console.log(e);
+         	res.json(loghandler.error)
+})
+} else {
+  res.json(loghandler.apikey)
+}
+})
 
 router.get('/download/stickerline', async(req, res, next) => {
   const apikey = req.query.apikey;
