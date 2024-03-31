@@ -35,5 +35,5 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: "ajiart01-restapi-94"
-          entrypoint: "/index.js"
+          entrypoint: "index.js"
           root: ""
